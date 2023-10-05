@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DebugButton : MonoBehaviour
 {
-    public Deck Deck;
     public TurnManager TurnManager;
 
     // Start is called before the first frame update
@@ -18,9 +17,11 @@ public class DebugButton : MonoBehaviour
     {
         
     }
-
-    public void OnDebugButtonClick() {
+    public void OnBeginEncounterClick() {
         TurnManager.BeginEncounter();
+    }
+
+    public void OnEndTurnClick() {
         TurnManager.EndTurn();
     }
 }

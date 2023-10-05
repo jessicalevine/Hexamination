@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class Deck : MonoBehaviour {
     }
 
     public void Shuffle() {
+        Debug.Log("SHUFFLING deck");
+
         // Add discard pile into draw pile
         for (int i = 0; i < DiscardPile.Count; i++) {
             DrawPile.Add(DiscardPile[i]);
@@ -37,7 +40,7 @@ public class Deck : MonoBehaviour {
         }
     }
 
-    public Card Draw() {
+    public Ability DrawAbility() {
         // Shuffle if it's empty
         if (DrawPile.Count < 1) {
             if (DiscardPile.Count < 1) {
@@ -51,7 +54,7 @@ public class Deck : MonoBehaviour {
                     return null;
                 }
                 else {
-                    return Draw();
+                    return DrawAbility();
                 }
             }
         }
@@ -59,7 +62,7 @@ public class Deck : MonoBehaviour {
         Ability drawnAbility = DrawPile[0];
         DrawPile.RemoveAt(0);
 
-        return new Card(drawnAbility);
+        return drawnAbility;
     }
 
     public void AddDiscard(Ability ability) {

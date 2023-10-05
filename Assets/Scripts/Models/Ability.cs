@@ -10,6 +10,7 @@ public class Ability : ScriptableObject
     public string CastDescription;
     public string RitualDescription;
 
-    public int Damage;
-    public int Dispel;
+    public int InitialDamage;
+    public int InitialDispel;
+    public int InitialResources;
 }

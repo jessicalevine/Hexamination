@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class Hand : MonoBehaviour
     public Card[] Cards;
     public Deck Deck;
 
+    public event Action<int, Card> CardCreated;
+    public event Action<int, Card> CardMoved;
+
     private void Start() {
         Cards = new Card[MaxHandSize];
     }
@@ -16,9 +20,11 @@ public class Hand : MonoBehaviour
         Card drawnCard;
         for (int i = 0; i < MaxHandSize; i++) {
             if (Cards[i] == null) {
-                drawnCard = Deck.Draw();
+                drawnCard = new Card(Deck.DrawAbility());
+                CardCreated.Invoke(i, drawnCard);
                 Cards[i] = drawnCard;
-                Debug.Log("Drew card [" + drawnCard.Ability.AbilityName + "] into slot [" + i + "]");
+                Debug.Log("DREW card [" + drawnCard.Ability.AbilityName + "] into slot [" + i + "]");
+
             }
         }
     }
@@ -26,9 +32,7 @@ public class Hand : MonoBehaviour
     public void DiscardHand() {
         for(int i = 0; i < MaxHandSize; i++) {
             if (!(Cards[i] == null)) {
-                Debug.Log("Discarding card number [" + i + "]");
-                Deck.AddDiscard(Cards[i].Ability);
-                Cards[i] = null;
+                DiscardCard(i);
             }
         }
     }
@@ -42,26 +46,30 @@ public class Hand : MonoBehaviour
             if (Cards[cardNumber] == null) {
                 Debug.LogWarning("Card number [" + cardNumber + "] is already null before Discard");
             } else {
-                Debug.Log("Discarding card number [" + cardNumber + "]");
-
-                Deck.AddDiscard(Cards[cardNumber].Ability);
-                Cards[cardNumber] = null;
+                DiscardCard(cardNumber);
                 ConsolidateHand();
             }
         }
     }
-
-    public void ConsolidateHand() {
+    private void ConsolidateHand() {
         Card[] newHand = new Card[MaxHandSize];
         int newHandIndex = 0;
 
         for (int oldHandIndex = 0; oldHandIndex < MaxHandSize; oldHandIndex++) {
             if (Cards[oldHandIndex] != null) {
                 newHand[newHandIndex] = Cards[oldHandIndex];
+                CardMoved.Invoke(newHandIndex, newHand[newHandIndex]);
                 newHandIndex++;
             }
         }
 
         Cards = newHand;
+    }
+
+    private void DiscardCard(int loc) {
+        Deck.AddDiscard(Cards[loc].Ability);
+        Cards[loc].Discard();
+        Cards[loc] = null;
+        Debug.Log("DISCARDING card number [" + loc + "]");
     }
 }
