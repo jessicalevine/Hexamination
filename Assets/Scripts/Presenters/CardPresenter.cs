@@ -8,6 +8,7 @@ public class CardPresenter : MonoBehaviour {
 
     public CharacterDamageEvent opponentDamageEvent;
     public CharacterIncreaseDispelEvent playerIncreaseDispelEvent;
+    public CardEvent attemptPlayCardEvent;
 
     void Start() {
         if (view == null)
@@ -18,6 +19,10 @@ public class CardPresenter : MonoBehaviour {
 
         if (opponentDamageEvent == null)
             Debug.LogError("No opponent damage event on CardPresenter!");
+        if (playerIncreaseDispelEvent == null)
+            Debug.LogError("No playerIncreaseDispelEvent on CardPresenter!");
+        if (attemptPlayCardEvent == null)
+            Debug.LogError("No attemptPlayCardEvent on CardPresenter!");
     }
 
     private void OnDestroy() {
@@ -30,7 +35,7 @@ public class CardPresenter : MonoBehaviour {
         view = GetComponent<CardView>();
 
         model = card;
-        model.RegisterListeners(opponentDamageEvent, playerIncreaseDispelEvent);
+        model.RegisterListeners(opponentDamageEvent, playerIncreaseDispelEvent, attemptPlayCardEvent);
 
         Ability a = model.Ability;
         view.SetAll(a.AbilityName, a.ManaCost, a);
@@ -41,7 +46,7 @@ public class CardPresenter : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
-    public void Play() {
-        model.Play();
+    public void AttemptPlay() {
+        model.AttemptPlay();
     }
 }

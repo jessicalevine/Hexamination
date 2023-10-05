@@ -41,7 +41,7 @@ public class CardView : MonoBehaviour {
                         return;
                     }
 
-                    cardPresenter.Play();
+                    cardPresenter.AttemptPlay();
                 }
 
             }

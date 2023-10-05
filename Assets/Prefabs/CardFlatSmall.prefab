@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentDamageEvent: {fileID: 11400000, guid: 89c4809e5e753bb46a46c64596a0f05c, type: 2}
   playerIncreaseDispelEvent: {fileID: 11400000, guid: 4fe7b49207ebbcc47be57577db514b5b, type: 2}
+  attemptPlayCardEvent: {fileID: 11400000, guid: 0489e941ac434de4da2242b093af4f31, type: 2}
 --- !u!61 &3320493447499016956
 BoxCollider2D:
   m_ObjectHideFlags: 0
