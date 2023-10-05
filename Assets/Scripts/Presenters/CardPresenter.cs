@@ -3,17 +3,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(CardView))]
 public class CardPresenter : MonoBehaviour {
-    [SerializeField] private CardView view;
-    [SerializeField] private Card model;
+    private CardView view;
+    private Card model;
+
+    public GameEvent playerDamageEvent;
 
     void Start() {
-        if (view == null) {
+        if (view == null)
             view = GetComponent<CardView>();
-        }
 
-        if (model != null) {
+        if (model != null)
             model.Discarded += OnDiscarded;
-        }
+
+        if (playerDamageEvent == null)
+            Debug.LogError("No player damage event on CardPresenter!");
     }
 
     private void OnDestroy() {
@@ -26,11 +29,18 @@ public class CardPresenter : MonoBehaviour {
         view = GetComponent<CardView>();
 
         model = card;
+        model.RegisterListeners(playerDamageEvent);
+
         Ability a = model.Ability;
         view.SetAll(a.AbilityName, a.ManaCost, a);
+
     }
 
     private void OnDiscarded() {
         Destroy(this.gameObject);
+    }
+
+    public void Play() {
+        model.Play();
     }
 }

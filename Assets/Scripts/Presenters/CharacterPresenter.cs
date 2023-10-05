@@ -2,10 +2,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(Character), typeof(CharacterView))]
 public class CharacterPresenter : MonoBehaviour {
-    private Character model;
-    private CharacterView view;
+    protected Character model;
+    protected CharacterView view;
 
-    void Start() {
+    public void Start() {
         model = GetComponent<Character>();
         view = GetComponent<CharacterView>();
 

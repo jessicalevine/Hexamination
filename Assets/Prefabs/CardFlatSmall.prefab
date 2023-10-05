@@ -252,9 +252,10 @@ GameObject:
   - component: {fileID: 7493416143447990715}
   - component: {fileID: 3677851813175778462}
   - component: {fileID: 8960927223477647052}
+  - component: {fileID: 3320493447499016956}
   m_Layer: 0
   m_Name: CardFlatSmall
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,7 +353,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d139af9802d7041b38f10142405b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 0}
+  playerDamageEvent: {fileID: 11400000, guid: 907315ba02859b1419edc6c30977d845, type: 2}
+--- !u!61 &3320493447499016956
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493416143447990712}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.031121254, y: 0.07655525}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.34, y: 4.83}
+    newSize: {x: 3.34, y: 4.83}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6304274, y: 4.3108845}
+  m_EdgeRadius: 0
 --- !u!1 &7493416143640918103
 GameObject:
   m_ObjectHideFlags: 0

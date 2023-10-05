@@ -1,7 +1,10 @@
 using TMPro;
 using UnityEngine;
 
+
 public class CardView : MonoBehaviour {
+    public const string CARD_TAG = "Card";
+
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text manaCost;
     [SerializeField] private TMP_Text cardDesc;
@@ -23,5 +26,25 @@ public class CardView : MonoBehaviour {
 
     public void SetPosition(Vector3 position) {
         transform.position = position;
+    }
+    private void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+            if (hit) {
+                GameObject hitObj = hit.collider.gameObject;
+                if (hitObj.tag == CARD_TAG) {
+                    CardPresenter cardPresenter = hitObj.GetComponent<CardPresenter>();
+                    if(cardPresenter == null) {
+                        Debug.LogError("Object tagged [" + CARD_TAG + "] does not have a CardPresenter during click");
+                        return;
+                    }
+
+                    cardPresenter.Play();
+                }
+
+            }
+        }
     }
 }
