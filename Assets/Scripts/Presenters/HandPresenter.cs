@@ -17,7 +17,6 @@ public class HandPresenter : MonoBehaviour {
         model = GetComponent<Hand>();
         if (model != null) {
             model.CardCreated += OnCardCreated;
-
             model.CardMoved += OnCardMoved;
         }
     }
