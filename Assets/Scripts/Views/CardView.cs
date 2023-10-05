@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -22,7 +21,7 @@ public class CardView : MonoBehaviour {
         cardDesc.text = "<line-height=75%>" + ability.CastDescription + "\n\n<b>Ritual:</b> " + ability.RitualDescription + "</line-height>";
     }
 
-    internal void SetPosition(Vector3 position) {
+    public void SetPosition(Vector3 position) {
         transform.position = position;
     }
 }
