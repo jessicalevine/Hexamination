@@ -16,5 +16,6 @@ MonoBehaviour:
   ManaCost: 1
   CastDescription: This card has 1 beet. Deal 3 damage per beet
   RitualDescription: Deal 1 damage per beet, then add a beet to this card.
-  Damage: 3
-  Dispel: 0
+  InitialDamage: 0
+  InitialDispel: 0
+  InitialResources: 1

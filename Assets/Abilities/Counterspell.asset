@@ -16,5 +16,6 @@ MonoBehaviour:
   ManaCost: 1
   CastDescription: Gain 4 Dispel
   RitualDescription: Add +4 Dispel to this card
-  Damage: 0
-  Dispel: 4
+  InitialDamage: 0
+  InitialDispel: 4
+  InitialResources: 0

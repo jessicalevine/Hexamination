@@ -16,5 +16,6 @@ MonoBehaviour:
   ManaCost: 1
   CastDescription: Deal 5 damage
   RitualDescription: Add +8 damage to this card
-  Damage: 5
-  Dispel: 0
+  InitialDamage: 5
+  InitialDispel: 0
+  InitialResources: 0
