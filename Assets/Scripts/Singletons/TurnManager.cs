@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
     public int mana;
     public Hand Hand;
     public Deck Deck;
+    [SerializeField] private Opponent opponent;
 
     public void BeginEncounter() {
         Deck.BeginEncounter();
@@ -20,6 +21,7 @@ public class TurnManager : MonoBehaviour
     }
 
     public void EndTurn() {
+        opponent.UseAbility(); // TODO go through presenter
         Hand.DiscardHand();
 
         // TODO opponent attacks

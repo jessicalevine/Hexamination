@@ -12,7 +12,8 @@ public class Card
 
     public event Action Discarded;
 
-    private GameEvent playerDamageEvent;
+    private CharacterDamageEvent opponentDamageEvent;
+    private CharacterIncreaseDispelEvent playerIncreaseDispelEvent;
 
     public Card(Ability ability) {
         Ability = ability;
@@ -28,15 +29,22 @@ public class Card
 
     public void Play() {
         if (Damage > 0) {
-            if (playerDamageEvent == null)
-                Debug.LogError("No player damage event for card!");
+            if (opponentDamageEvent == null)
+                Debug.LogError("No opponent damage event for card!");
             else
-                playerDamageEvent.Raise(Damage);
+                opponentDamageEvent.Raise(Damage);
+        }
+        if (Dispel > 0) {
+            if (playerIncreaseDispelEvent == null)
+                Debug.LogError("No playerIncreaseDispelEvent for card!");
+            else
+                playerIncreaseDispelEvent.Raise(Dispel);
         }
         Discard();
     }
 
-    internal void RegisterListeners(GameEvent playerDamageEventArg) {
-        playerDamageEvent = playerDamageEventArg;
+    internal void RegisterListeners(CharacterDamageEvent opponentDamageEventArg, CharacterIncreaseDispelEvent playerIncreaseDispelEventArg) {
+        opponentDamageEvent = opponentDamageEventArg;
+        playerIncreaseDispelEvent = playerIncreaseDispelEventArg;
     }
 }

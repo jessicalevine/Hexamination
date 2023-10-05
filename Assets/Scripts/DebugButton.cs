@@ -6,6 +6,7 @@ public class DebugButton : MonoBehaviour {
 
     public void OnBeginEncounterClick() {
         turnManager.BeginEncounter();
+        Destroy(this.gameObject);
     }
 
     public void OnEndTurnClick() {
