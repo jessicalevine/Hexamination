@@ -6,14 +6,9 @@ public class Hand : MonoBehaviour
 {
     public const int MaxHandSize = 5;
     public Card[] Cards;
+    public Deck Deck;
 
-    public static Hand Instance { get; private set; }
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(this);
-            return;
-        }
-        Instance = this;
+    private void Start() {
         Cards = new Card[MaxHandSize];
     }
 
@@ -21,9 +16,19 @@ public class Hand : MonoBehaviour
         Card drawnCard;
         for (int i = 0; i < MaxHandSize; i++) {
             if (Cards[i] == null) {
-                drawnCard = Deck.Instance.Draw();
+                drawnCard = Deck.Draw();
                 Cards[i] = drawnCard;
                 Debug.Log("Drew card [" + drawnCard.Ability.AbilityName + "] into slot [" + i + "]");
+            }
+        }
+    }
+
+    public void DiscardHand() {
+        for(int i = 0; i < MaxHandSize; i++) {
+            if (!(Cards[i] == null)) {
+                Debug.Log("Discarding card number [" + i + "]");
+                Deck.AddDiscard(Cards[i].Ability);
+                Cards[i] = null;
             }
         }
     }
@@ -37,6 +42,9 @@ public class Hand : MonoBehaviour
             if (Cards[cardNumber] == null) {
                 Debug.LogWarning("Card number [" + cardNumber + "] is already null before Discard");
             } else {
+                Debug.Log("Discarding card number [" + cardNumber + "]");
+
+                Deck.AddDiscard(Cards[cardNumber].Ability);
                 Cards[cardNumber] = null;
                 ConsolidateHand();
             }

@@ -6,25 +6,21 @@ public class TurnManager : MonoBehaviour
 {
     private const int _maxMana = 3;
     public int mana;
+    public Hand Hand;
+    public Deck Deck;
 
-    public static TurnManager Instance { get; private set; }
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(this);
-            return;
-        }
-        Instance = this;
+    public void BeginEncounter() {
+        Deck.BeginEncounter();
+        BeginTurn();
     }
 
-    private void BeginTurn() {
+    public void BeginTurn() {
         mana = _maxMana;
-        Hand.Instance.DrawFull();
+        Hand.DrawFull();
     }
-    private void EndTurn() {
-        for (int i = 0; i < Hand.MaxHandSize; i++) {
-            Hand.Instance.Discard(i);
-            // TODO make more efficient after implementing rituals
-        }
+
+    public void EndTurn() {
+        Hand.DiscardHand();
 
         // TODO opponent attacks
         BeginTurn();
