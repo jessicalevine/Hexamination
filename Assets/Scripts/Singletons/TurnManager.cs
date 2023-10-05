@@ -35,6 +35,7 @@ public class TurnManager : MonoBehaviour {
 
     public void BeginTurn() {
         mana = _maxMana;
+        UpdateView();
         Hand.DrawFull();
     }
 
@@ -49,13 +50,16 @@ public class TurnManager : MonoBehaviour {
     private void OnAttemptPlayCard(Card card) {
         if (card.Ability.ManaCost <= mana) {
             mana -= card.Ability.ManaCost;
-            manaText.text = mana.ToString() + "/3"; // TODO move to view
-
+            UpdateView();
             card.Play();
             Debug.Log("Playing card [" + card.Ability.AbilityName + "]");
         }
         else {
             Debug.Log("Not enough mana for card [" + card.Ability.AbilityName + "]");
         }
+    }
+
+    private void UpdateView() {
+        manaText.text = mana.ToString() + "/3"; // TODO move to view
     }
 }
