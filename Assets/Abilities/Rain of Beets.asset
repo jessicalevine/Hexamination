@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b710045b4b245949a34d52f3459929d, type: 3}
+  m_Name: Rain of Beets
+  m_EditorClassIdentifier: 
+  AbilityName: Rain of Beets
+  ManaCost: 1
+  CastDescription: This card has 1 beet. Deal 3 damage per beet
+  RitualDescription: Deal 1 damage per beet, then add a beet to this card.
+  Damage: 3
+  Dispel: 0
