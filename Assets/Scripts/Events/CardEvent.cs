@@ -3,9 +3,9 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class CardEvent : ScriptableObject {
-    public event Action<Card> Action;
+    public event Action<CardPresenter> Action;
 
-    internal void Raise(Card card) {
-        Action.Invoke(card);
+    internal void Raise(CardPresenter cardPresenter) {
+        Action.Invoke(cardPresenter);
     }
 }

@@ -14,7 +14,6 @@ public class Card
 
     private CharacterDamageEvent opponentDamageEvent;
     private CharacterIncreaseDispelEvent playerIncreaseDispelEvent;
-    private CardEvent attemptPlayCardEvent;
 
     public Card(Ability ability) {
         Ability = ability;
@@ -26,10 +25,6 @@ public class Card
     public void Discard() {
         Discarded?.Invoke();
         // TODO Refactor to better event system so that I don't need ?. Cards should be MonoBehaviours.
-    }
-
-    public void AttemptPlay() {
-        attemptPlayCardEvent.Raise(this);
     }
 
     public void Play() {
@@ -48,9 +43,8 @@ public class Card
         Discard();
     }
 
-    internal void RegisterListeners(CharacterDamageEvent opponentDamageEventArg, CharacterIncreaseDispelEvent playerIncreaseDispelEventArg, CardEvent attemptPlayCardEventArg) {
+    internal void RegisterListeners(CharacterDamageEvent opponentDamageEventArg, CharacterIncreaseDispelEvent playerIncreaseDispelEventArg) {
         opponentDamageEvent = opponentDamageEventArg;
         playerIncreaseDispelEvent = playerIncreaseDispelEventArg;
-        attemptPlayCardEvent = attemptPlayCardEventArg;
     }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(CardView))]
 public class CardPresenter : MonoBehaviour {
-    private CardView view;
     private Card model;
+    private CardView view;
 
-    public CharacterDamageEvent opponentDamageEvent;
-    public CharacterIncreaseDispelEvent playerIncreaseDispelEvent;
-    public CardEvent attemptPlayCardEvent;
+    [SerializeField] private CharacterDamageEvent opponentDamageEvent;
+    [SerializeField] private CharacterIncreaseDispelEvent playerIncreaseDispelEvent;
+    [SerializeField] private CardEvent attemptPlayCardEvent;
 
     void Start() {
         if (view == null)
@@ -35,7 +35,7 @@ public class CardPresenter : MonoBehaviour {
         view = GetComponent<CardView>();
 
         model = card;
-        model.RegisterListeners(opponentDamageEvent, playerIncreaseDispelEvent, attemptPlayCardEvent);
+        model.RegisterListeners(opponentDamageEvent, playerIncreaseDispelEvent);
 
         Ability a = model.Ability;
         view.SetAll(a.AbilityName, a.ManaCost, a);
@@ -47,6 +47,18 @@ public class CardPresenter : MonoBehaviour {
     }
 
     public void AttemptPlay() {
-        model.AttemptPlay();
+        attemptPlayCardEvent.Raise(this);
+    }
+
+    public void Zoom() {
+        view.Zoom();
+    }
+
+    public Card Model() {
+        return model;
+    }
+
+    public CardView View() {
+        return view;
     }
 }

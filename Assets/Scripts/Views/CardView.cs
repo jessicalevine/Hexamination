@@ -3,11 +3,18 @@ using UnityEngine;
 
 
 public class CardView : MonoBehaviour {
-    public const string CARD_TAG = "Card";
+    private const float scaleZoom = 1.2f;
+    private const float scaleRegular = 0.8f;
+    const float zoomX = -0.15f;
+    const float zoomY = 2.07f;
 
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text manaCost;
     [SerializeField] private TMP_Text cardDesc;
+
+    private bool animating = false;
+    private bool zoomed = false;
+    private Vector3 lastPosition;
 
     void Start() {
         if (cardTitle == null)
@@ -16,6 +23,7 @@ public class CardView : MonoBehaviour {
             Debug.LogError("No manaCost");
         if (cardDesc == null)
             Debug.LogError("No cardDesc");
+
     }
 
     public void SetAll(string newTitle, int newManaCost, Ability ability) {
@@ -27,24 +35,24 @@ public class CardView : MonoBehaviour {
     public void SetPosition(Vector3 position) {
         transform.position = position;
     }
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-            if (hit) {
-                GameObject hitObj = hit.collider.gameObject;
-                if (hitObj.tag == CARD_TAG) {
-                    CardPresenter cardPresenter = hitObj.GetComponent<CardPresenter>();
-                    if(cardPresenter == null) {
-                        Debug.LogError("Object tagged [" + CARD_TAG + "] does not have a CardPresenter during click");
-                        return;
-                    }
+    public bool IsZoomed() {
+        return zoomed;
+    }
 
-                    cardPresenter.AttemptPlay();
-                }
+    public void Zoom() {
+        Vector3 oldPosition = transform.position;
+        lastPosition = new Vector3(oldPosition.x, oldPosition.y, oldPosition.z);
 
-            }
-        }
+        transform.position = new Vector3(zoomX, zoomY, 0);
+        transform.localScale = new Vector3(scaleZoom, scaleZoom, scaleZoom);
+    }
+
+    public void Unzoom() {
+        if (lastPosition != null)
+            transform.position = lastPosition;
+        else
+            Debug.LogError("Tried to unzoom a card without a lastPosition. Was it never zoomed?");
+        transform.localScale = new Vector3(scaleRegular, scaleRegular, scaleRegular);
     }
 }
