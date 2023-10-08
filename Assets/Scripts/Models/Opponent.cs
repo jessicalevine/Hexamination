@@ -6,6 +6,11 @@ public class Opponent : Character {
     [SerializeField] private List<OpponentAbility> abilityRotation;
     [SerializeField] private CharacterDamageEvent playerDamageEvent;
 
+    private new void Awake() {
+        maxHealth = 45;
+        base.Awake();
+    }
+
     public void UseAbility() {
         OpponentAbility nextAbility = PeekIntent();
         abilityRotation.RemoveAt(0);

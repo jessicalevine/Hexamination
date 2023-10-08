@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
     public event Action HealthChanged;
-    private const int minHealth = 0;
-    private const int maxHealth = 80;
-    private int currentHealth = maxHealth;
+    protected int minHealth = 0;
+    protected int maxHealth = 80;
+    private int currentHealth;
+
     public int CurrentHealth { get => currentHealth; internal set => currentHealth = value; }
     public int MinHealth => minHealth;
     public int MaxHealth => maxHealth;
@@ -15,6 +16,10 @@ public class Character : MonoBehaviour {
     private int currentDispel = minDispel;
     public int CurrentDispel { get => currentDispel; internal set => currentDispel = value; }
     public int MinDispel => minDispel;
+
+    protected void Awake() {
+        currentHealth = maxHealth;
+    }
 
     public void ApplyDamage(int damage) {
         if (currentDispel > 0) {
