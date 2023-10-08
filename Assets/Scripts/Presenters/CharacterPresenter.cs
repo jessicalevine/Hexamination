@@ -44,10 +44,10 @@ public class CharacterPresenter : MonoBehaviour {
         model.IncreaseDispel(dispel);
     }
     private void OnHealthChanged() {
-        view.SetHealthUI(model.CurrentHealth);
+        view.AnimateHealthUI(model.CurrentHealth);
     }
 
     private void OnDispelChanged() {
-        view.SetDispelUI(model.CurrentDispel);
+        view.AnimateDispelUI(model.CurrentDispel);
     }
 }
