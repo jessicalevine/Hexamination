@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Counterspell
   ManaCost: 1
-  CastDescription: Gain 4 Dispel
+  CastDescription: Gain %DSP% Dispel
   RitualDescription: Add +4 Dispel to this card
   InitialDamage: 0
   InitialDispel: 4
   InitialResources: 0
+  RitualDamageRamp: 0
+  RitualDispelRamp: 4
+  RitualResourceRamp: 0
+  PerResourceDamage: 0
+  PerResourceDispel: 0

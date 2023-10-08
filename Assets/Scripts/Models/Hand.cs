@@ -32,7 +32,11 @@ public class Hand : MonoBehaviour
     public void DiscardHand() {
         for(int i = 0; i < MaxHandSize; i++) {
             if (!(Cards[i] == null)) {
-                DiscardCard(i);
+                if (Cards[i].retainThisTurn) {
+                    Cards[i].retainThisTurn = false;
+                } else {
+                    DiscardCard(i);
+                }
             }
         }
     }

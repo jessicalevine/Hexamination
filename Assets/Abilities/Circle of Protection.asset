@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Circle of Protection
   ManaCost: 1
-  CastDescription: Gain 3 Dispel.
+  CastDescription: Gain %DSP% Dispel.
   RitualDescription: Gain 3 Dispel, then add 1 Dispel to this card.
   InitialDamage: 0
   InitialDispel: 3
   InitialResources: 0
+  RitualDamageRamp: 0
+  RitualDispelRamp: 1
+  RitualResourceRamp: 0
+  PerResourceDamage: 0
+  PerResourceDispel: 0

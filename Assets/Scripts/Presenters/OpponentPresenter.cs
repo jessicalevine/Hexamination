@@ -1,18 +1,25 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpponentPresenter : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+[RequireComponent(typeof(Opponent))]
+public class OpponentPresenter : CharacterPresenter {
+    [SerializeField] private GeneralEvent endTurnEvent;
+
+    private Opponent opponentModel;
+
+    private new void Start() {
+        base.Start();
+
+        opponentModel = GetComponent<Opponent>();
+
+        if (endTurnEvent == null)
+            Debug.LogError("No beginTurnEvent on OpponentPresenter!");
+        else
+            endTurnEvent.Action += OnEndTurn;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnEndTurn() {
+        opponentModel.UseAbility();
     }
 }

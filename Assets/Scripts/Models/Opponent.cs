@@ -10,7 +10,6 @@ public class Opponent : Character {
         OpponentAbility nextAbility = abilityRotation[0];
         abilityRotation.RemoveAt(0);
 
-
         if (nextAbility.Damage > 0) {
             if (playerDamageEvent == null)
                 Debug.LogError("No player damage event for opponent!");

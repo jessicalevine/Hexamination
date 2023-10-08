@@ -313,6 +313,8 @@ MonoBehaviour:
   handPresenter: {fileID: 1250609581}
   attemptCastEvent: {fileID: 11400000, guid: 2834e73b76a8996429be30af10ff8894, type: 2}
   attemptRitualizeEvent: {fileID: 11400000, guid: 6220c91a2ef38f1409bc2f91b215bacb, type: 2}
+  beginTurnEvent: {fileID: 11400000, guid: 2707aa7d1f69d714a96b20fb3dbc61e9, type: 2}
+  endTurnEvent: {fileID: 11400000, guid: b95f3ce343c280340ac6698c11976d58, type: 2}
   manaText: {fileID: 787801979}
 --- !u!4 &185247275
 Transform:
@@ -473,8 +475,8 @@ GameObject:
   - component: {fileID: 197097566}
   - component: {fileID: 197097565}
   - component: {fileID: 197097569}
-  - component: {fileID: 197097568}
   - component: {fileID: 197097567}
+  - component: {fileID: 197097568}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: OpponentCharacter
@@ -571,11 +573,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 197097564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b00bf86c6c61c84f98aca38b3f80e40, type: 3}
+  m_Script: {fileID: 11500000, guid: c672a5b3d168e684e9218980b8b1d469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterDamageEvent: {fileID: 11400000, guid: 89c4809e5e753bb46a46c64596a0f05c, type: 2}
   characterIncreaseDispelEvent: {fileID: 11400000, guid: cf5896d16dbafdf4a998423af9f21819, type: 2}
+  endTurnEvent: {fileID: 11400000, guid: b95f3ce343c280340ac6698c11976d58, type: 2}
 --- !u!114 &197097569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2256,6 +2259,7 @@ MonoBehaviour:
   requestToggleZoomCardEvent: {fileID: 11400000, guid: 8fa20e014cde3bc43a85d36aee0fbeaa, type: 2}
   castButtonView: {fileID: 1791794197}
   ritualizeButtonView: {fileID: 1018011543}
+  beginTurnEvent: {fileID: 11400000, guid: 2707aa7d1f69d714a96b20fb3dbc61e9, type: 2}
 --- !u!114 &1250609582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3206,6 +3210,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727099754}
   m_CullTransparentMesh: 1
+--- !u!1 &1782425062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1782425064}
+  - component: {fileID: 1782425063}
+  m_Layer: 0
+  m_Name: AnimationQueue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1782425063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782425062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fd6262fc89ffa4895136835103835e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1782425064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782425062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.33, y: -3.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791794195
 GameObject:
   m_ObjectHideFlags: 0

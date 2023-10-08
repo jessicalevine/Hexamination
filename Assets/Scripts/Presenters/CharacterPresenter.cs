@@ -10,7 +10,7 @@ public class CharacterPresenter : MonoBehaviour {
     protected Character model;
     protected CharacterView view;
 
-    public void Start() {
+    protected void Start() {
         model = GetComponent<Character>();
         view = GetComponent<CharacterView>();
 

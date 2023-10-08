@@ -24,7 +24,8 @@ public class HandView : MonoBehaviour {
                         return;
                     }
 
-                    requestToggleZoomCardEvent.Raise(cardPresenter);
+                    if (!cardPresenter.IsRitualizedThisTurn())
+                        requestToggleZoomCardEvent.Raise(cardPresenter);
                 }
             }
         }

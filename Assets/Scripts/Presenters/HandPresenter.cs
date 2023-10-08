@@ -4,6 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Hand), typeof(HandView))]
 public class HandPresenter : MonoBehaviour {
+    private static Vector3 drawAnimOffset = new Vector3(0, 0.17f, 0);
+
     private HandView view;
     private Hand model;
 
@@ -12,7 +14,7 @@ public class HandPresenter : MonoBehaviour {
     [SerializeField] private CardEvent requestToggleZoomCardEvent;
     [SerializeField] private CastButtonView castButtonView;
     [SerializeField] private RitualizeButtonView ritualizeButtonView;
-
+    [SerializeField] private GeneralEvent beginTurnEvent;
 
     private Dictionary<Card, CardView> cardViews;
     private CardPresenter zoomedCardPresenter = null;
@@ -34,6 +36,11 @@ public class HandPresenter : MonoBehaviour {
         else
             requestToggleZoomCardEvent.Action += OnToggleZoomCard;
 
+        if (beginTurnEvent == null)
+            Debug.LogError("No beginTurnEvent on HandPresenter!");
+        else
+            beginTurnEvent.Action += OnBeginTurn;
+
         if (castButtonView == null)
             Debug.LogError("No castButton on HandPresenter!");
         if (ritualizeButtonView == null)
@@ -51,17 +58,22 @@ public class HandPresenter : MonoBehaviour {
         }
     }
 
+    private void OnBeginTurn() {
+        model.DiscardHand();
+        model.DrawFull();
+    }
+
     private void OnCardCreated(int loc, Card card) {
-        GameObject cardObject = Instantiate(cardPrefab, cardLocations[loc].transform.position, Quaternion.identity);
+        GameObject cardObject = Instantiate(cardPrefab, cardLocations[loc].transform.position + drawAnimOffset, Quaternion.identity);
 
         CardPresenter cardPresenter = cardObject.GetComponent<CardPresenter>();
         cardPresenter.Setup(card);
+        cardPresenter.SetupAnimation(cardLocations[loc].transform.position, true);
+        AnimationQueue.Instance.Queue(cardPresenter.animationManager);
 
         CardView cardView = cardPrefab.GetComponent<CardView>();
         cardViews[card] = cardView;
     }
-
-
 
     private void OnCardMoved(int loc, Card card) {
         cardViews[card].SetPosition(cardLocations[loc].transform.position);
@@ -96,8 +108,13 @@ public class HandPresenter : MonoBehaviour {
     }
 
     public void CastZoomedCard() {
-        zoomedCardPresenter.Model().Play();
+        zoomedCardPresenter.Cast();
         ResetZoomState();
+    }
+
+    public void RitualizeZoomedCard() {
+        zoomedCardPresenter.Ritualize();
+        requestToggleZoomCardEvent.Raise(zoomedCardPresenter);
     }
 
     public Hand Model() {

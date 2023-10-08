@@ -13,4 +13,17 @@ public class Ability : ScriptableObject
     public int InitialDamage;
     public int InitialDispel;
     public int InitialResources;
+
+    public int RitualDamageImmediate;
+    public int RitualDispelImmediate;
+
+    public int RitualPerResourceDamageImmediate;
+    public int RitualPerResourceDispelImmediate;
+
+    public int RitualDamageRamp;
+    public int RitualDispelRamp;
+    public int RitualResourceRamp;
+
+    public int PerResourceDamage;
+    public int PerResourceDispel;
 }

@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Stunbolt
   ManaCost: 1
-  CastDescription: Deal 5 damage
+  CastDescription: Deal %DMG% damage
   RitualDescription: Add +8 damage to this card
   InitialDamage: 5
   InitialDispel: 0
   InitialResources: 0
+  RitualDamageRamp: 8
+  RitualDispelRamp: 0
+  RitualResourceRamp: 0
+  PerResourceDamage: 0
+  PerResourceDispel: 0

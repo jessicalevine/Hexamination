@@ -14,8 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Rain of Beets
   ManaCost: 1
-  CastDescription: This card has 1 beet. Deal 3 damage per beet
-  RitualDescription: Deal 1 damage per beet, then add a beet to this card.
+  CastDescription: This card has %RES% beets. Deal 2 damage per beet %PAREN_DMG%.
+  RitualDescription: Deal 1 damage per beet %PAREN_DMG_IMM%, then add a beet to this
+    card.
   InitialDamage: 0
   InitialDispel: 0
-  InitialResources: 1
+  InitialResources: 2
+  RitualDamageImmediate: 0
+  RitualDispelImmediate: 0
+  RitualPerResourceDamageImmediate: 1
+  RitualPerResourceDispelImmediate: 0
+  RitualDamageRamp: 0
+  RitualDispelRamp: 0
+  RitualResourceRamp: 1
+  PerResourceDamage: 2
+  PerResourceDispel: 0

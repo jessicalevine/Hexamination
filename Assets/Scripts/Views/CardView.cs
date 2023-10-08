@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,8 +12,9 @@ public class CardView : MonoBehaviour {
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text manaCost;
     [SerializeField] private TMP_Text cardDesc;
+    [SerializeField] private GameObject ritualText;
+    [SerializeField] private GameObject ritualCountText;
 
-    private bool animating = false;
     private bool zoomed = false;
     private Vector3 lastPosition;
 
@@ -24,12 +26,16 @@ public class CardView : MonoBehaviour {
         if (cardDesc == null)
             Debug.LogError("No cardDesc");
 
+        if (ritualText == null)
+            Debug.LogError("No ritualText");
+        if (ritualCountText == null)
+            Debug.LogError("No ritualCountText");
     }
 
-    public void SetAll(string newTitle, int newManaCost, Ability ability) {
+    public void SetAll(string newTitle, int newManaCost, string newCardDesc) {
         cardTitle.text = newTitle;
         manaCost.text = newManaCost.ToString();
-        cardDesc.text = "<line-height=75%>" + ability.CastDescription + "\n\n<b>Ritual:</b> " + ability.RitualDescription + "</line-height>";
+        cardDesc.text = newCardDesc;
     }
 
     public void SetPosition(Vector3 position) {
@@ -54,5 +60,17 @@ public class CardView : MonoBehaviour {
         else
             Debug.LogError("Tried to unzoom a card without a lastPosition. Was it never zoomed?");
         transform.localScale = new Vector3(scaleRegular, scaleRegular, scaleRegular);
+    }
+
+    public void UpdateRitualText(bool ritualizedThisTurn) {
+        ritualText.SetActive(ritualizedThisTurn);
+    }
+
+    public void UpdateRitualCount(int ritualCount) {
+        if (ritualCountText.activeSelf != true) {
+            ritualCountText.SetActive(true);
+        }
+
+        ritualCountText.GetComponent<TMP_Text>().text = "RITUALS: " + ritualCount;
     }
 }

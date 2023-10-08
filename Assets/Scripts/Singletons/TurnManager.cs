@@ -9,12 +9,14 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] private Opponent opponent;
     [SerializeField] private HandPresenter handPresenter;
 
-    public GeneralEvent attemptCastEvent;
-    public GeneralEvent attemptRitualizeEvent;
+    [SerializeField] private GeneralEvent attemptCastEvent;
+    [SerializeField] private GeneralEvent attemptRitualizeEvent;
+    [SerializeField] private GeneralEvent beginTurnEvent;
+    [SerializeField] private GeneralEvent endTurnEvent;
+
 
     // move to view
     public TMP_Text manaText;
-
 
     void Start() {
         if (attemptCastEvent == null)
@@ -26,6 +28,12 @@ public class TurnManager : MonoBehaviour {
             Debug.LogError("No attemptRitualizeEvent on TurnManager!");
         else
             attemptRitualizeEvent.Action += OnAttemptRitualize;
+
+        if (beginTurnEvent == null)
+            Debug.LogError("No beginTurnEvent on TurnManager!");
+
+        if (endTurnEvent == null)
+            Debug.LogError("No endTurnEvent on TurnManager!");
 
         if (handPresenter == null)
             Debug.LogError("No handPresenter on TurnManager!");
@@ -47,14 +55,13 @@ public class TurnManager : MonoBehaviour {
     public void BeginTurn() {
         mana = _maxMana;
         UpdateView();
-        handPresenter.Model().DrawFull();
+        // TODO Mana as own MVP
+
+        beginTurnEvent.Raise();
     }
 
     public void EndTurn() {
-        opponent.UseAbility(); // TODO go through presenter
-        handPresenter.Model().DiscardHand();
-
-        // TODO opponent attacks
+        endTurnEvent.Raise();
         BeginTurn();
     }
 
@@ -66,15 +73,26 @@ public class TurnManager : MonoBehaviour {
             UpdateView();
 
             handPresenter.CastZoomedCard();
-            Debug.Log("Playing card [" + card.Ability.AbilityName + "]");
+            Debug.Log("Casting card [" + card.Ability.AbilityName + "]");
         }
         else {
-            Debug.Log("Not enough mana for card [" + card.Ability.AbilityName + "]");
+            Debug.Log("Not enough mana to cast card [" + card.Ability.AbilityName + "]");
         }
     }
 
     private void OnAttemptRitualize() {
-        throw new NotImplementedException();
+        Card card = handPresenter.ZoomedCardPresenter().Model();
+
+        if (card.Ability.ManaCost <= mana) {
+            mana -= card.Ability.ManaCost;
+            UpdateView();
+
+            handPresenter.RitualizeZoomedCard();
+            Debug.Log("Ritualizing card [" + card.Ability.AbilityName + "]");
+        }
+        else {
+            Debug.Log("Not enough mana to ritualize card [" + card.Ability.AbilityName + "]");
+        }
     }
 
     private void UpdateView() {
