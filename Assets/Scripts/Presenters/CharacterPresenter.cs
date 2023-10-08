@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterPresenter : MonoBehaviour {
     [SerializeField] private CharacterDamageEvent characterDamageEvent;
     [SerializeField] private CharacterIncreaseDispelEvent characterIncreaseDispelEvent;
-
-
     protected Character model;
     protected CharacterView view;
 
@@ -30,6 +28,7 @@ public class CharacterPresenter : MonoBehaviour {
         else
             characterIncreaseDispelEvent.Action += OnCharacterIncreaseDispel;
     }
+
 
     private void OnDestroy() {
         model.HealthChanged -= OnHealthChanged;

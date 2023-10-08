@@ -31,6 +31,7 @@ public class OpponentPresenter : CharacterPresenter {
     }
 
     private void OnEndTurn() {
+        base.model.SetDispel(0);
         opponentModel.UseAbility();
     }
 }

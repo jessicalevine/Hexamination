@@ -3992,7 +3992,7 @@ GameObject:
   - component: {fileID: 2117691845}
   - component: {fileID: 2117691844}
   m_Layer: 0
-  m_Name: PC
+  m_Name: Player
   m_TagString: PlayerCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4084,11 +4084,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2117691840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a18134fbc9786f84f9084e24b32be8c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 875aac538cbbac445bbf8a7084aab455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterHealthText: {fileID: 1473645506}
-  characterDispelText: {fileID: 193348675}
+  characterDamageEvent: {fileID: 11400000, guid: 907315ba02859b1419edc6c30977d845, type: 2}
+  characterIncreaseDispelEvent: {fileID: 11400000, guid: 4fe7b49207ebbcc47be57577db514b5b, type: 2}
+  beginTurnEvent: {fileID: 11400000, guid: 2707aa7d1f69d714a96b20fb3dbc61e9, type: 2}
 --- !u!114 &2117691845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,8 +4099,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2117691840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b00bf86c6c61c84f98aca38b3f80e40, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f81bd3d24f558249820841e530e15a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterDamageEvent: {fileID: 11400000, guid: 907315ba02859b1419edc6c30977d845, type: 2}
-  characterIncreaseDispelEvent: {fileID: 11400000, guid: 4fe7b49207ebbcc47be57577db514b5b, type: 2}
+  characterHealthText: {fileID: 1473645506}
+  characterDispelText: {fileID: 193348675}
