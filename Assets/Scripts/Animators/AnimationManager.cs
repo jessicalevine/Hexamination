@@ -42,7 +42,7 @@ public class AnimationManager {
     public void Setup(Vector2 endLocation, Vector2 startLocation, GameObject obj = null) {
         objToActivate = obj;
         timeElapsed = 0;
-        animationStartpoint = objToMove.transform.position;
+        animationStartpoint = startLocation;
         animationEndpoint = endLocation;
 
         setup = true;
