@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e46d84b26972d7e418c183b0891883a1, type: 3}
-  m_Name: Blast
+  m_Name: Block
   m_EditorClassIdentifier: 
-  AbilityName: Blast
-  MinDamage: 6
-  MinDispel: 0
-  MaxDamage: 10
-  MaxDispel: 0
+  AbilityName: 
+  MinDamage: 0
+  MinDispel: 4
+  MaxDamage: 0
+  MaxDispel: 8
