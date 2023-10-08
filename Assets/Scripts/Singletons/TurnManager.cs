@@ -14,6 +14,7 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] private GeneralEvent beginTurnEvent;
     [SerializeField] private GeneralEvent endTurnEvent;
 
+    [SerializeField] private GameObject endTurnButton;
 
     // move to view
     public TMP_Text manaText;
@@ -40,6 +41,9 @@ public class TurnManager : MonoBehaviour {
 
         if (manaText == null)
             Debug.LogError("No manaText on TurnManager!");
+
+        if (endTurnButton == null)
+            Debug.LogError("No endTurnButton on TurnManager!");
     }
 
     private void OnDestroy() {
@@ -48,6 +52,7 @@ public class TurnManager : MonoBehaviour {
     }
 
     public void BeginEncounter() {
+        endTurnButton.SetActive(true);
         Deck.BeginEncounter();
         BeginTurn();
     }
