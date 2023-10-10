@@ -14,6 +14,7 @@ public class CardView : MonoBehaviour {
     [SerializeField] private TMP_Text cardDesc;
     [SerializeField] private GameObject ritualText;
     [SerializeField] private GameObject ritualCountText;
+    [SerializeField] private Texture2D cardArt;
 
     private bool zoomed = false;
     private Vector3 lastPosition;
@@ -26,16 +27,21 @@ public class CardView : MonoBehaviour {
         if (cardDesc == null)
             Debug.LogError("No cardDesc");
 
+        if (cardArt == null)
+            Debug.LogError("No cardArt");
+
         if (ritualText == null)
             Debug.LogError("No ritualText");
         if (ritualCountText == null)
             Debug.LogError("No ritualCountText");
     }
 
-    public void SetAll(string newTitle, int newManaCost, string newCardDesc) {
+    public void SetAll(string newTitle, int newManaCost, string newCardDesc, Texture2D newCardArt) {
         cardTitle.text = newTitle;
         manaCost.text = newManaCost.ToString();
         cardDesc.text = newCardDesc;
+
+        cardArt = newCardArt;
     }
 
     public void SetPosition(Vector3 position) {

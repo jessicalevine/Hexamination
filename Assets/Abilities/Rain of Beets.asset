@@ -17,6 +17,7 @@ MonoBehaviour:
   CastDescription: This card has %RES% beets. Deal 2 damage per beet %PAREN_DMG%.
   RitualDescription: Deal 1 damage per beet %PAREN_DMG_IMM%, then add a beet to this
     card.
+  CardArt: {fileID: 2800000, guid: ef8af7c391964d7419ff5a959d14e604, type: 3}
   InitialDamage: 0
   InitialDispel: 0
   InitialResources: 2

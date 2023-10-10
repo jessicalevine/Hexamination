@@ -79,7 +79,7 @@ public class CardPresenter : MonoBehaviour {
     private void OnCardUpdate() {
         Ability a = model.Ability;
         Debug.Log("Card [" + a.AbilityName + "] updated");
-        view.SetAll(a.AbilityName, a.ManaCost, CardStringFormatter.FormatCardDescription(model));
+        view.SetAll(a.AbilityName, a.ManaCost, CardStringFormatter.FormatCardDescription(model), a.CardArt);
     }
 
     private void OnBeginTurn() {

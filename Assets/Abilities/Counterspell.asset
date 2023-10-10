@@ -16,9 +16,14 @@ MonoBehaviour:
   ManaCost: 1
   CastDescription: Gain %DSP% Dispel
   RitualDescription: Add +4 Dispel to this card
+  CardArt: {fileID: 2800000, guid: fb8d0e99cd7ee3d48a72a9988f88d956, type: 3}
   InitialDamage: 0
   InitialDispel: 4
   InitialResources: 0
+  RitualDamageImmediate: 0
+  RitualDispelImmediate: 0
+  RitualPerResourceDamageImmediate: 0
+  RitualPerResourceDispelImmediate: 0
   RitualDamageRamp: 0
   RitualDispelRamp: 4
   RitualResourceRamp: 0
