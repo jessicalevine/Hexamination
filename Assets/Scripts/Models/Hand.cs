@@ -12,8 +12,14 @@ public class Hand : MonoBehaviour
     public event Action<int, Card> CardCreated;
     public event Action<int, Card> CardMoved;
 
+    [SerializeField] private GeneralEvent cardDrawnEvent;
+
+
     private void Start() {
         Cards = new Card[MaxHandSize];
+
+        if (cardDrawnEvent == null)
+            Debug.LogError("No cardDrawnEvent on Hand!");
     }
 
     public void DrawFull() {
@@ -25,6 +31,8 @@ public class Hand : MonoBehaviour
                 Cards[i] = drawnCard;
                 Debug.Log("DREW card [" + drawnCard.Ability.AbilityName + "] into slot [" + i + "]");
 
+                // Inform anyone listening that a card was just drawn
+                cardDrawnEvent.Raise();
             }
         }
     }
