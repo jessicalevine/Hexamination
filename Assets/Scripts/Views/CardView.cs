@@ -17,8 +17,11 @@ public class CardView : MonoBehaviour {
     [SerializeField] private TMP_Text cardDesc;
     [SerializeField] private GameObject ritualText;
     [SerializeField] private GameObject ritualCountText;
+
     [SerializeField] private GameObject ritualImage;
     [SerializeField] private GameObject hoverImage;
+
+    [SerializeField] private SpriteRenderer cardArtSpriteRenderer;
 
     private bool zoomed = false;
     private bool isZoomed = false;
@@ -31,6 +34,9 @@ public class CardView : MonoBehaviour {
             Debug.LogError("No manaCost");
         if (cardDesc == null)
             Debug.LogError("No cardDesc");
+
+        if (cardArtSpriteRenderer == null)
+            Debug.LogError("No cardArtSpriteRenderer");
 
         if (ritualText == null)
             Debug.LogError("No ritualText");
@@ -60,10 +66,13 @@ public class CardView : MonoBehaviour {
         } 
     }
 
-    public void SetAll(string newTitle, int newManaCost, string newCardDesc) {
+    public void SetAll(string newTitle, int newManaCost, string newCardDesc, Texture2D newCardArt) {
         cardTitle.text = newTitle;
         manaCost.text = newManaCost.ToString();
         cardDesc.text = newCardDesc;
+
+        Vector2 centerOfSpriteBounds = new Vector2(0.5f, 0.5f);
+        cardArtSpriteRenderer.sprite = Sprite.Create(newCardArt, new Rect(0, 0, newCardArt.width, newCardArt.height), centerOfSpriteBounds);
     }
 
     public void SetPosition(Vector3 position) {

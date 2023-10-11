@@ -9,6 +9,7 @@ public class Ability : ScriptableObject
     public int ManaCost;
     public string CastDescription;
     public string RitualDescription;
+    public Texture2D CardArt;
 
     public int InitialDamage;
     public int InitialDispel;

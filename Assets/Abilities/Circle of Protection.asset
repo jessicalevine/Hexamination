@@ -16,9 +16,14 @@ MonoBehaviour:
   ManaCost: 1
   CastDescription: Gain %DSP% Dispel.
   RitualDescription: Gain 3 Dispel, then add 1 Dispel to this card.
+  CardArt: {fileID: 2800000, guid: 696133342e7ec034c9875c30e8b7eda0, type: 3}
   InitialDamage: 0
   InitialDispel: 3
   InitialResources: 0
+  RitualDamageImmediate: 0
+  RitualDispelImmediate: 0
+  RitualPerResourceDamageImmediate: 0
+  RitualPerResourceDispelImmediate: 0
   RitualDamageRamp: 0
   RitualDispelRamp: 1
   RitualResourceRamp: 0
