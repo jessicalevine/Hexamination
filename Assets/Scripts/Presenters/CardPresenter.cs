@@ -83,7 +83,7 @@ public class CardPresenter : MonoBehaviour {
     }
 
     private void OnBeginTurn() {
-        if (model.ritualizedThisTurn) {
+        if (model != null && model.ritualizedThisTurn) {
             model.AdvanceRitual();
             model.ritualizedThisTurn = false;
             view.UpdateRitualText(false);
