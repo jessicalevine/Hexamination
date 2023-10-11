@@ -18,6 +18,6 @@ public class GeneralSoundTrigger : MonoBehaviour {
         generalEvent.Action += OnAction;
     }
     private void OnAction() {
-        sound.PlayOneShot(sound.clip);
+        sound.Play();
     }
 }
