@@ -17,8 +17,13 @@ public class Character : MonoBehaviour {
     public int CurrentDispel { get => currentDispel; internal set => currentDispel = value; }
     public int MinDispel => minDispel;
 
+    [SerializeField] private GeneralEvent damageAppliedEvent;
+
     protected void Awake() {
         currentHealth = maxHealth;
+
+        if (damageAppliedEvent == null)
+            Debug.LogError("No damageAppliedEvent on Character!");
     }
 
     public void ApplyDamage(int damage) {
@@ -31,6 +36,8 @@ public class Character : MonoBehaviour {
         if (damage > 0) {
             DecreaseHealth(damage);
         }
+
+        damageAppliedEvent.Raise();
     }
 
     public void IncreaseHealth(int amount) {
