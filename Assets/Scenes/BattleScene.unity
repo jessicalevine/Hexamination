@@ -2863,6 +2863,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ec2afe54bf514d46b437cf8d540af2f, type: 2}
   - {fileID: 11400000, guid: 9ec2afe54bf514d46b437cf8d540af2f, type: 2}
   - {fileID: 11400000, guid: 1962f4b441082814b867f78c107a5a3c, type: 2}
+  - {fileID: 11400000, guid: b081e2d58dda32c48ad7163c705f20b7, type: 2}
   DrawPile: []
   DiscardPile: []
 --- !u!4 &1443511613
