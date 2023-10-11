@@ -9,14 +9,19 @@ public class CardView : MonoBehaviour {
     const float zoomX = -0.15f;
     const float zoomY = 2.07f;
 
+    public float highlightScaleFactor = 1.2f;  // The scale factor when highlighted
+    private Vector3 originalScale;  // The original scale of the object
+
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text manaCost;
     [SerializeField] private TMP_Text cardDesc;
     [SerializeField] private GameObject ritualText;
     [SerializeField] private GameObject ritualCountText;
     [SerializeField] private GameObject ritualImage;
+    [SerializeField] private GameObject hoverImage;
 
     private bool zoomed = false;
+    private bool isZoomed = false;
     private Vector3 lastPosition;
 
     void Start() {
@@ -31,6 +36,28 @@ public class CardView : MonoBehaviour {
             Debug.LogError("No ritualText");
         if (ritualCountText == null)
             Debug.LogError("No ritualCountText");
+
+        originalScale = transform.localScale;
+    }
+
+    private void OnMouseEnter()
+    {
+        if (isZoomed != true)
+        {
+            // Scale the object when highlighted
+            transform.localScale = originalScale * highlightScaleFactor;
+            hoverImage.SetActive(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (isZoomed != true)
+        {
+            // Restore the original scale when the highlight is removed
+            transform.localScale = originalScale;
+            hoverImage.SetActive(false);
+        } 
     }
 
     public void SetAll(string newTitle, int newManaCost, string newCardDesc) {
@@ -48,11 +75,13 @@ public class CardView : MonoBehaviour {
     }
 
     public void Zoom() {
+        hoverImage.SetActive(false);
         Vector3 oldPosition = transform.position;
         lastPosition = new Vector3(oldPosition.x, oldPosition.y, oldPosition.z);
 
         transform.position = new Vector3(zoomX, zoomY, 0);
         transform.localScale = new Vector3(scaleZoom, scaleZoom, scaleZoom);
+        isZoomed = true;
     }
 
     public void Unzoom() {
@@ -61,6 +90,7 @@ public class CardView : MonoBehaviour {
         else
             Debug.LogError("Tried to unzoom a card without a lastPosition. Was it never zoomed?");
         transform.localScale = new Vector3(scaleRegular, scaleRegular, scaleRegular);
+        isZoomed = false;
     }
 
     public void UpdateRitualText(bool ritualizedThisTurn) {
@@ -78,6 +108,6 @@ public class CardView : MonoBehaviour {
             ritualImage.SetActive(true);
         }
 
-        ritualCountText.GetComponent<TMP_Text>().text = "RITUALS: " + ritualCount;
+        ritualCountText.GetComponent<TMP_Text>().text = "Rituals: " + ritualCount;
     }
 }
