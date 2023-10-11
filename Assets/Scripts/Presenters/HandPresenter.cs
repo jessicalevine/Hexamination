@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +13,9 @@ public class HandPresenter : MonoBehaviour {
     [SerializeField] private CardEvent requestToggleZoomCardEvent;
     [SerializeField] private CastButtonView castButtonView;
     [SerializeField] private RitualizeButtonView ritualizeButtonView;
+
     [SerializeField] private GeneralEvent beginTurnEvent;
+    [SerializeField] private GeneralEvent endTurnEvent;
 
     private Dictionary<Card, CardView> cardViews;
     private CardPresenter zoomedCardPresenter = null;
@@ -41,6 +42,11 @@ public class HandPresenter : MonoBehaviour {
         else
             beginTurnEvent.Action += OnBeginTurn;
 
+        if (endTurnEvent == null)
+            Debug.LogError("No endTurnEvent on HandPresenter!");
+        else
+            endTurnEvent.Action += OnEndTurn;
+
         if (castButtonView == null)
             Debug.LogError("No castButton on HandPresenter!");
         if (ritualizeButtonView == null)
@@ -61,6 +67,10 @@ public class HandPresenter : MonoBehaviour {
     private void OnBeginTurn() {
         model.DiscardHand();
         model.DrawFull();
+    }
+
+    private void OnEndTurn() {
+        ResetZoomState();
     }
 
     private void OnCardCreated(int loc, Card card) {
@@ -89,7 +99,8 @@ public class HandPresenter : MonoBehaviour {
             if (zoomedCardPresenter != null) {
                 Debug.Log("Requested to toggle and there's already a zoomed card, unzooming it");
                 zoomedCardPresenter.View().Unzoom();
-            } else {
+            }
+            else {
                 // If there wasn't a card already zoomed, we need to activate the buttons
                 castButtonView.transform.gameObject.SetActive(true);
                 ritualizeButtonView.transform.gameObject.SetActive(true);

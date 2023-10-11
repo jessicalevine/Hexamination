@@ -2284,6 +2284,7 @@ MonoBehaviour:
   castButtonView: {fileID: 1791794197}
   ritualizeButtonView: {fileID: 1018011543}
   beginTurnEvent: {fileID: 11400000, guid: 2707aa7d1f69d714a96b20fb3dbc61e9, type: 2}
+  endTurnEvent: {fileID: 11400000, guid: b95f3ce343c280340ac6698c11976d58, type: 2}
 --- !u!114 &1250609582
 MonoBehaviour:
   m_ObjectHideFlags: 0
