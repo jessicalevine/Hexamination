@@ -14,6 +14,7 @@ public class CardView : MonoBehaviour {
     [SerializeField] private TMP_Text cardDesc;
     [SerializeField] private GameObject ritualText;
     [SerializeField] private GameObject ritualCountText;
+    [SerializeField] private GameObject ritualImage;
 
     private bool zoomed = false;
     private Vector3 lastPosition;
@@ -64,11 +65,17 @@ public class CardView : MonoBehaviour {
 
     public void UpdateRitualText(bool ritualizedThisTurn) {
         ritualText.SetActive(ritualizedThisTurn);
+        ritualImage.SetActive(ritualizedThisTurn);
     }
 
     public void UpdateRitualCount(int ritualCount) {
         if (ritualCountText.activeSelf != true) {
             ritualCountText.SetActive(true);
+        }
+
+        if (ritualImage.activeSelf != true)
+        {
+            ritualImage.SetActive(true);
         }
 
         ritualCountText.GetComponent<TMP_Text>().text = "RITUALS: " + ritualCount;
