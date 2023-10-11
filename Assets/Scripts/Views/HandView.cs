@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class HandView : MonoBehaviour {
+
+    [SerializeField] private GeneralEvent cardClickEvent;
+
     public const string CARD_TAG = "Card";
     [SerializeField] private CardEvent requestToggleZoomCardEvent;
 
@@ -26,6 +29,8 @@ public class HandView : MonoBehaviour {
 
                     if (!cardPresenter.IsRitualizedThisTurn())
                         requestToggleZoomCardEvent.Raise(cardPresenter);
+                        
+                    cardClickEvent.Raise();
                 }
             }
         }
